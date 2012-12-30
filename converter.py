@@ -55,7 +55,7 @@ class Segment(object):
     return self.head == '-1'
 
   def to_str(self):
-    return ''.join([m.split(' ')[0].encode('utf-8') for m in self.morphs])
+    return ''.join([m.split('\t')[0].encode('utf-8') for m in self.morphs])
 
   def __str__(self):
     return '\n'.join([m.encode('utf-8') for m in self.morphs])
