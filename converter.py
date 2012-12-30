@@ -76,16 +76,18 @@ def sentence_to_deptext(sent):
   return ' \& '.join([seg.to_str() for seg in sent]) + ' \\\\'
 
 def read_deptree(f):
-  sentence = []
+  sentences = []
+  sent = []
   segment = Segment()
   for l in f:
     if l.startswith('EOS'):
-      sentence.append(segment)
-      break
+      sent.append(segment)
+      sentences.append(sent)
+      sent = []
     # Parse a line to get information about a segment ID and head.
     elif l.startswith('*'):
       if segment.id is not None:
-        sentence.append(segment)
+        sent.append(segment)
       segment = Segment()
 
       lis = l.rstrip().split(' ')
@@ -99,7 +101,7 @@ def read_deptree(f):
         raise FormatError('Illegal format:' + l)
     else:
       segment.add(l.rstrip().decode('utf-8'))
-  return sentence
+  return sentences
 
 def wrap_depedge(h, m):
     return '\depedge{%d}{%d}{}' % (int(h)+1, int(m)+1)
@@ -171,14 +173,16 @@ def main():
   tex_formatter = LaTeXFormatter(opts.doc_opt, opts.font, opts.dep_opt, opts.deptxt_opt)
 
   if len(unused_args) == 0:
-    sent = read_deptree(sys.stdin)
+    sents = read_deptree(sys.stdin)
   else:
     with open(unused_args[0]) as f:
-      sent = read_deptree(f)
+      sents = read_deptree(f)
 
-  print tex_formatter.latex_header()
-  tex_formatter.print_tikz_dep(sent)
-  print tex_formatter.latex_footer()
+  for sent in sents:
+    print tex_formatter.latex_header()
+    tex_formatter.print_tikz_dep(sent)
+    print tex_formatter.latex_footer()
+    print
 
 if __name__ == '__main__':
   main()
