@@ -29,15 +29,15 @@ pLaTeX などの日本語を扱うことのできる他の TeX 処理系では�
 あらかじめ CaboCha により解析された文を入力データとして用意する必要があります。
 より具体的には `cabocha -f1` で解析されたフォーマットである必要があります。
 
-  $ ./converter.py [options] data
+    $ ./converter.py [options] data
 
 または
 
-  $ cat data | ./converter.py
+    $ cat data | ./converter.py
 
 あるいは CaboCha で解析した結果を直接パイプでつないで渡すことも可能です。
 
-  $ cat example/example.txt | cabocha -f1 | ./converter.py
+    $ cat example/example.txt | cabocha -f1 | ./converter.py
 
 なお、CaboCha に対する入力ファイルは一行一文になっている必要があります。
 
