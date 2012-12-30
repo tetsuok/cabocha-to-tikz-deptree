@@ -1,0 +1,16 @@
+\documentclass{standalone}
+\usepackage{tikz-dependency}
+\usepackage{zxjatype}
+\setjamainfont[Scale=0.8]{Hiragino Kaku Gothic Pro W3}
+\begin{document}
+\begin{dependency}[theme = simple]
+\begin{deptext}[column sep=1em]
+太郎は \& 花子が \& 読んでいる \& 本を \& 次郎に \& 渡した \\
+\end{deptext}
+\depedge{1}{6}{}
+\depedge{2}{3}{}
+\depedge{3}{4}{}
+\depedge{4}{6}{}
+\depedge{5}{6}{}
+\end{dependency}
+\end{document}
