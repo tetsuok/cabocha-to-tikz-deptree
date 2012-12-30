@@ -72,6 +72,9 @@ class Segment(object):
     self.index += 1
     return res
 
+def pp(sent):
+  return ' '.join([seg.to_str() for seg in sent])
+
 def sentence_to_deptext(sent):
   return ' \& '.join([seg.to_str() for seg in sent]) + ' \\\\'
 
@@ -83,6 +86,7 @@ def read_deptree(f):
     if l.startswith('EOS'):
       sent.append(segment)
       sentences.append(sent)
+      segment = Segment()
       sent = []
     # Parse a line to get information about a segment ID and head.
     elif l.startswith('*'):
