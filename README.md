@@ -55,8 +55,8 @@ pLaTeX などの日本語を扱うことのできる他の TeX 処理系では�
 
 出力サンプル:
 
-<img src="https://github.com/tetsuok/cabocha-to-tikz-deptree/blob/master/example/example.pdf"
-alt="sample output" title="sample output" align="middle" width="500" height="450" />
+<img src="https://github.com/tetsuok/cabocha-to-tikz-deptree/blob/master/example/example.png"
+alt="sample output" title="sample output" width="500" height="450" />
 
 ### 入力データの文字コード ###
 
