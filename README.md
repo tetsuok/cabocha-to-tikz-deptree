@@ -27,7 +27,8 @@ pLaTeX などの日本語を扱うことのできる他の TeX 処理系では�
 ### 使い方 ###
 
 あらかじめ CaboCha により解析された文を入力データとして用意する必要があります。
-より具体的には `cabocha -f1` で解析されたフォーマットである必要があります。
+具体的には `cabocha -f1` で解析されたフォーマットである必要があります。
+解析済みのデータを `converter.py` を用いて LaTeX 形式のファイルに変換します。
 
     $ ./converter.py [options] data
 
@@ -40,11 +41,22 @@ pLaTeX などの日本語を扱うことのできる他の TeX 処理系では�
     $ cat example/example.txt | cabocha -f1 | ./converter.py
 
 なお、CaboCha に対する入力ファイルは一行一文になっている必要があります。
-
 利用可能なオプションについては, `-h` またｈ `--help` を参照して下さい。
 データフォーマットについては、CaboCha の web サイトまたは
 [サンプルデータ](https://github.com/tetsuok/cabocha-to-tikz-deptree/blob/master/example/example.dep)
 を参照して下さい。
+
+
+#### 実行例 ####
+
+パイプを使って CaboCha で解析した結果から `converter.py` で変換して XeLaTeX で pdf を出力する例
+
+    $ echo "太郎は花子が読んでいる本を次郎に渡した" | cabocha -f1 | ./converter.py | xelatex
+
+出力サンプル:
+
+<img src="https://github.com/tetsuok/cabocha-to-tikz-deptree/blob/master/example/example.pdf"
+alt="sample output" title="sample output" align="middle" width="500" height="450" />
 
 ### 入力データの文字コード ###
 
